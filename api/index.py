@@ -5,16 +5,17 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# Enable CORS for POST from any origin
+# ✅ Enable CORS for all origins and methods (including OPTIONS)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["POST"],
+    allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"]  
 )
 
-# Load telemetry once at startup
+# ✅ Load telemetry once at startup
 with open("telemetry.json", "r") as f:
     TELEMETRY = json.load(f)
 
